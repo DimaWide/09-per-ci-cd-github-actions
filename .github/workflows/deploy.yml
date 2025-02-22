@@ -1,24 +1,24 @@
-name: PHP Deploy
+name: Deploy via FTP
 
 on:
   push:
     branches:
-      - main
+      - main  # Можно указать конкретную ветку, например, main
 
 jobs:
   deploy:
+    name: Deploy
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Клонирование репозитория
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v2  # Клонируем репозиторий
 
-      - name: 🚀 Деплой через FTP
-        uses: appleboy/ftp-action@v1.0.0   # Используем ftp-action от appleboy
+      - name: Upload via FTP
+        uses: genietim/ftp-action@v4  # Используем стабильную версию v4
         with:
-          host: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
+          host: ${{ secrets.FTP_SERVER }}
+          user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          local_dir: ./  # Локальная директория для деплоя
-          remote_dir: ${{ secrets.FTP_DIRECTORY }}
+          localDir: "dist"  # Локальная директория для загрузки
+          remoteDir: "www"  # Удалённая директория на сервере
