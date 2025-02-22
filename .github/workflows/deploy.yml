@@ -21,4 +21,4 @@ jobs:
           user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           localDir: "dist"  # Локальная директория для загрузки
-          remoteDir: "www"  # Удалённая директория на сервере
+          remoteDir: "public_html"  # Удалённая директория на сервере
