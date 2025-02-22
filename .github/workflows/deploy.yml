@@ -17,8 +17,8 @@ jobs:
       - name: Upload via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}    # Указываем сервер
+          server: ${{ secrets.FTP_HOST }}    # Указываем сервер
           username: ${{ secrets.FTP_USERNAME }} # Логин для FTP
           password: ${{ secrets.FTP_PASSWORD }} # Пароль для FTP
-          # local-dir: "dist"  # Локальная директория с результатами сборки
-          # server-dir: "public_html"  # Удалённая директория на сервере
+          local-dir: "dist"  # Локальная директория с результатами сборки
+          server-dir: "public_html"  # Удалённая директория на сервере
