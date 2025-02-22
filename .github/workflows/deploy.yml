@@ -1,0 +1,22 @@
+name: PHP Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Клонирование репозитория
+        uses: actions/checkout@v4
+
+      - name: 🚀 Деплой в папку ${{ secrets.FTP_DIRECTORY }}
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_DIRECTORY }}
