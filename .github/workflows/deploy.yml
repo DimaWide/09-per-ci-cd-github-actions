@@ -21,4 +21,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }} # Логин для FTP
           password: ${{ secrets.FTP_PASSWORD }} # Пароль для FTP
           local-dir: "dist/"  # Локальная директория с результатами сборки, с завершающим слэшем
-          server-dir: "public_html/ci-cd-git-actions"  # Удалённая директория на сервере
+          server-dir: "public_html/ci-cd-git-actions/"  # Удалённая директория на сервере
