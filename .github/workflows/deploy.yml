@@ -3,22 +3,24 @@ name: Deploy via FTP
 on:
   push:
     branches:
-      - main
+      - main  # Trigger deployment on push to the main branch
 
 jobs:
   deploy:
     name: Deploy
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Run the job on the latest Ubuntu environment
 
     steps:
+      # Step 1: Checkout the repository to access files
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2  # Clone the repository
 
+      # Step 2: Upload files via FTP
       - name: Upload via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5  # Use the FTP deploy action
         with:
-          server: ${{ secrets.FTP_HOST }}    # Указываем сервер
-          username: ${{ secrets.FTP_USERNAME }} # Логин для FTP
-          password: ${{ secrets.FTP_PASSWORD }} # Пароль для FTP
-          local-dir: "dist/"  # Локальная директория с результатами сборки, с завершающим слэшем
-          server-dir: "/domains/dw-web-dev.online/public_html/ci-cd-git-actions/"  # Удалённая директория на сервере
+          server: ${{ secrets.FTP_HOST }}    # FTP server address
+          username: ${{ secrets.FTP_USERNAME }} # FTP username
+          password: ${{ secrets.FTP_PASSWORD }} # FTP password
+          local-dir: "dist/"  # Local directory to upload (must end with '/')
+          server-dir: "/domains/dw-web-dev.online/public_html/ci-cd-git-actions/"  # Remote server directory to deploy files
