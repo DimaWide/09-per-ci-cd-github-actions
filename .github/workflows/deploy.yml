@@ -13,10 +13,11 @@ jobs:
       - name: 📥 Клонирование репозитория
         uses: actions/checkout@v4
 
-      - name: 🚀 Деплой в папку ${{ secrets.FTP_DIRECTORY }}
-        uses: SamKirkland/FTP-Deploy-Action@v3   # Используй v3 или master
+      - name: 🚀 Деплой в папку
+        uses: lemoncode/ftp-action@v2   # Используем ftp-action от Lemoncode
         with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_DIRECTORY }}
+          ftp_host: ${{ secrets.FTP_HOST }}
+          ftp_user: ${{ secrets.FTP_USERNAME }}
+          ftp_password: ${{ secrets.FTP_PASSWORD }}
+          local_dir: ./ # Локальная директория для деплоя
+          remote_dir: ${{ secrets.FTP_DIRECTORY }}
