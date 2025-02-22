@@ -3,7 +3,7 @@ name: Deploy via FTP
 on:
   push:
     branches:
-      - main  # Можно указать конкретную ветку, например, main
+      - main
 
 jobs:
   deploy:
@@ -12,13 +12,13 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2  # Клонируем репозиторий
+        uses: actions/checkout@v2
 
       - name: Upload via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5  # Используем стабильную версию v4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          host: ${{ secrets.FTP_SERVER }}
-          user: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          localDir: "dist"  # Локальная директория для загрузки
-          remoteDir: "public_html"  # Удалённая директория на сервере
+          server: ${{ secrets.FTP_SERVER }}    # Правильный параметр для сервера
+          username: ${{ secrets.FTP_USERNAME }} # Правильный параметр для логина
+          password: ${{ secrets.FTP_PASSWORD }} # Правильный параметр для пароля
+          local-dir: "dist"  # Локальная директория с результатами сборки
+          server-dir: "public_html"  # Удалённая директория на сервере
