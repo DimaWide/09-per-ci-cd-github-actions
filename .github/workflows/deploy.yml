@@ -20,5 +20,5 @@ jobs:
           server: ${{ secrets.FTP_HOST }}    # Указываем сервер
           username: ${{ secrets.FTP_USERNAME }} # Логин для FTP
           password: ${{ secrets.FTP_PASSWORD }} # Пароль для FTP
-          local-dir: "dist"  # Локальная директория с результатами сборки
+          local-dir: "dist/"  # Локальная директория с результатами сборки, с завершающим слэшем
           server-dir: "public_html"  # Удалённая директория на сервере
